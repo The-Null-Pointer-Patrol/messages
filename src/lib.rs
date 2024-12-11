@@ -66,7 +66,7 @@ pub enum TextResponse {
 impl DroneSend for TextResponse {}
 impl Response for TextResponse {}
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum MediaResponse {
     MediaList(Vec<u64>),
     Media(Vec<u8>), // should we use some other type?
