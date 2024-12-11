@@ -24,7 +24,7 @@ pub trait Request: DroneSend {}
 pub trait Response: DroneSend {}
 
 // ReqServerType,
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum TextRequest {
     TextList,
     Text(u64),
@@ -33,7 +33,7 @@ pub enum TextRequest {
 impl DroneSend for TextRequest {}
 impl Request for TextRequest {}
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum MediaRequest {
     MediaList,
     Media(u64),
@@ -42,7 +42,7 @@ pub enum MediaRequest {
 impl DroneSend for MediaRequest {}
 impl Request for MediaRequest {}
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum ChatRequest {
     ClientList,
     Register(NodeId),
@@ -56,7 +56,7 @@ pub enum ChatRequest {
 impl DroneSend for ChatRequest {}
 impl Request for ChatRequest {}
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum TextResponse {
     TextList(Vec<u64>),
     Text(String),
@@ -75,7 +75,7 @@ pub enum MediaResponse {
 impl DroneSend for MediaResponse {}
 impl Response for MediaResponse {}
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum ChatResponse {
     ClientList(Vec<NodeId>),
     MessageFrom { from: NodeId, message: Vec<u8> },
