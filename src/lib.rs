@@ -2,6 +2,8 @@ use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use wg_2024::network::NodeId;
 
+mod node;
+
 #[derive(Debug, Clone)]
 pub struct Message<M: DroneSend> {
     pub source_id: NodeId,
