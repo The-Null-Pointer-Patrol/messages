@@ -6,10 +6,10 @@ mod node;
 pub mod node_event;
 
 #[derive(Debug, Clone)]
-pub struct Message<M: DroneSend> {
+pub struct Message {
     pub source_id: NodeId,
     pub session_id: u64,
-    pub content: M,
+    pub content: Box<dyn DroneSend>,
 }
 
 pub trait DroneSend: Serialize + DeserializeOwned + Send {
