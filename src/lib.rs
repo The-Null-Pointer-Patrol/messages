@@ -12,7 +12,7 @@ pub struct Message<M: DroneSend> {
     pub content: M,
 }
 
-pub trait DroneSend: Serialize + DeserializeOwned {
+pub trait DroneSend: Serialize + DeserializeOwned + Send {
     fn stringify(&self) -> String {
         serde_json::to_string(self).unwrap()
     }
