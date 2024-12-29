@@ -12,14 +12,14 @@ pub enum NodeEvent<M: DroneSend> {
 }
 
 #[derive(Debug)]
-pub(super) struct NetworkGraph {
+pub struct NetworkGraph {
     nodes: RwLock<Vec<Arc<RwLock<NetworkNode>>>>
 }
 
 #[derive(Debug)]
-pub(super) struct NetworkNode {
-    pub(super) node_id: NodeId,
-    pub(super) node_type: NodeType,
-    pub(super) num_of_dropped_packets: u64, // TODO: does this need to be communicated to SC?
-    pub(super) neighbors: RwLock<Vec<NodeId>>
+pub struct NetworkNode {
+    pub node_id: NodeId,
+    pub node_type: NodeType,
+    pub num_of_dropped_packets: u64, // TODO: does this need to be communicated to SC?
+    pub neighbors: RwLock<Vec<NodeId>>
 }
