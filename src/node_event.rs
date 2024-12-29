@@ -13,7 +13,7 @@ pub enum NodeEvent<M: DroneSend> {
 
 #[derive(Debug)]
 pub struct NetworkGraph {
-    nodes: RwLock<Vec<Arc<RwLock<NetworkNode>>>>
+    pub nodes: RwLock<Vec<Arc<RwLock<NetworkNode>>>>
 }
 
 #[derive(Debug)]

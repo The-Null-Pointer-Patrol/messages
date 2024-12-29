@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use wg_2024::network::NodeId;
 
 mod node;
-mod node_event;
+pub mod node_event;
 
 #[derive(Debug, Clone)]
 pub struct Message<M: DroneSend> {
