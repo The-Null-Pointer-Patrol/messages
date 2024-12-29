@@ -7,6 +7,7 @@ pub enum NodeEvent<M: DroneSend> {
     PacketSent(Packet),
     PacketReceived(Packet),
     StartingMessageTransmission(Message<M>),
+    MessageSentSuccessfully(Message<M>),
     MessageReceived(Message<M>),
     KnownNetworkGraph(NetworkGraph)
 }
@@ -20,6 +21,6 @@ pub struct NetworkGraph {
 pub struct NetworkNode {
     pub node_id: NodeId,
     pub node_type: NodeType,
-    pub num_of_dropped_packets: u64, // TODO: does this need to be communicated to SC?
+    pub num_of_dropped_packets: u64,
     pub neighbors: RwLock<Vec<NodeId>>
 }
