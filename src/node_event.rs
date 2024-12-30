@@ -14,7 +14,7 @@ pub enum NodeEvent<M: DroneSend> {
 
 #[derive(Debug)]
 pub struct NetworkGraph {
-    pub nodes: RwLock<Vec<Arc<RwLock<NetworkNode>>>>
+    pub nodes: Vec<NetworkNode>
 }
 
 #[derive(Debug)]
@@ -22,5 +22,5 @@ pub struct NetworkNode {
     pub node_id: NodeId,
     pub node_type: NodeType,
     pub num_of_dropped_packets: u64,
-    pub neighbors: RwLock<Vec<NodeId>>
+    pub neighbors: Vec<NodeId>,
 }
