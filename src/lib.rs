@@ -1,17 +1,10 @@
 use std::fmt::Debug;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::DeserializeOwned;
 use wg_2024::network::NodeId;
 
 mod node;
 pub mod node_event;
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Message {
-    pub source_id: NodeId,
-    pub session_id: u64,
-    pub content: MessageType,
-}
 
 pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
     fn stringify(&self) -> String {
@@ -27,6 +20,15 @@ pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
         serde_json::from_str(raw.as_str()).map_err(|e| e.to_string())
     }
 }
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Message {
+    pub source_id: NodeId,
+    pub session_id: u64,
+    pub content: MessageType,
+}
+
+impl MessageUtilities for Message { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MessageType {
