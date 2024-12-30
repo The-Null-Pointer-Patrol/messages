@@ -13,7 +13,7 @@ pub struct Message {
     pub content: MessageType,
 }
 
-pub trait TestTrait: Serialize + DeserializeOwned + Send {
+pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
     fn stringify(&self) -> String {
         serde_json::to_string(self).unwrap()
     }
@@ -34,7 +34,7 @@ pub enum MessageType {
     Response(ResponseType),
 }
 
-impl TestTrait for MessageType { }
+impl MessageUtilities for MessageType { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum RequestType {
@@ -43,7 +43,7 @@ pub enum RequestType {
     ChatRequest(ChatRequest),
 }
 
-impl TestTrait for RequestType { }
+impl MessageUtilities for RequestType { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ResponseType {
@@ -52,7 +52,7 @@ pub enum ResponseType {
     ChatResponse(ChatResponse),
 }
 
-impl TestTrait for ResponseType { }
+impl MessageUtilities for ResponseType { }
 
 // ReqServerType,
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -61,7 +61,7 @@ pub enum TextRequest {
     Text(u64),
 }
 
-impl TestTrait for TextRequest { }
+impl MessageUtilities for TextRequest { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaRequest {
@@ -69,7 +69,7 @@ pub enum MediaRequest {
     Media(u64),
 }
 
-impl TestTrait for MediaRequest { }
+impl MessageUtilities for MediaRequest { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatRequest {
@@ -82,7 +82,7 @@ pub enum ChatRequest {
     },
 }
 
-impl TestTrait for ChatRequest { }
+impl MessageUtilities for ChatRequest { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TextResponse {
@@ -91,7 +91,7 @@ pub enum TextResponse {
     NotFound,
 }
 
-impl TestTrait for TextResponse { }
+impl MessageUtilities for TextResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaResponse {
@@ -99,7 +99,7 @@ pub enum MediaResponse {
     Media(Vec<u8>), // should we use some other type?
 }
 
-impl TestTrait for MediaResponse { }
+impl MessageUtilities for MediaResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatResponse {
@@ -108,4 +108,4 @@ pub enum ChatResponse {
     MessageSent,
 }
 
-impl TestTrait for ChatResponse { }
+impl MessageUtilities for ChatResponse { }
