@@ -9,16 +9,16 @@ pub enum NodeEvent<M: DroneSend> {
     StartingMessageTransmission(Message<M>),
     MessageSentSuccessfully(Message<M>),
     MessageReceived(Message<M>),
-    KnownNetworkGraph(NetworkGraph)
+    KnownNetworkGraph(EventNetworkGraph)
 }
 
 #[derive(Debug)]
-pub struct NetworkGraph {
-    pub nodes: Vec<NetworkNode>
+pub struct EventNetworkGraph {
+    pub nodes: Vec<EventNetworkNode>
 }
 
 #[derive(Debug)]
-pub struct NetworkNode {
+pub struct EventNetworkNode {
     pub node_id: NodeId,
     pub node_type: NodeType,
     pub num_of_dropped_packets: u64,
