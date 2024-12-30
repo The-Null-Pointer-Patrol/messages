@@ -1,7 +1,6 @@
-use std::sync::{Arc, RwLock};
+use crate::{DroneSend, Message};
 use wg_2024::network::NodeId;
 use wg_2024::packet::{NodeType, Packet};
-use crate::{DroneSend, Message};
 
 pub enum NodeEvent<M: DroneSend> {
     PacketSent(Packet),
@@ -9,12 +8,12 @@ pub enum NodeEvent<M: DroneSend> {
     StartingMessageTransmission(Message<M>),
     MessageSentSuccessfully(Message<M>),
     MessageReceived(Message<M>),
-    KnownNetworkGraph(EventNetworkGraph)
+    KnownNetworkGraph(EventNetworkGraph),
 }
 
 #[derive(Debug)]
 pub struct EventNetworkGraph {
-    pub nodes: Vec<EventNetworkNode>
+    pub nodes: Vec<EventNetworkNode>,
 }
 
 #[derive(Debug)]
