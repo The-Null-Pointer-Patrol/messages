@@ -41,6 +41,7 @@ pub enum RequestType {
     TextRequest(TextRequest),
     MediaRequest(MediaRequest),
     ChatRequest(ChatRequest),
+    DiscoveryRequest(()),
 }
 
 impl MessageUtilities for RequestType { }
@@ -50,6 +51,7 @@ pub enum ResponseType {
     TextResponse(TextResponse),
     MediaResponse(MediaResponse),
     ChatResponse(ChatResponse),
+    DiscoveryResponse(ServerType),
 }
 
 impl MessageUtilities for ResponseType { }
@@ -109,3 +111,11 @@ pub enum ChatResponse {
 }
 
 impl MessageUtilities for ChatResponse { }
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ServerType {
+    TextServer,
+    MediaServer,
+}
+
+impl MessageUtilities for ServerType { }
