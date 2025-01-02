@@ -2,7 +2,7 @@ use wg_2024::network::NodeId;
 use wg_2024::packet::{NodeType, Packet};
 use crate::Message;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum NodeEvent {
     PacketSent(Packet),
     PacketReceived(Packet),
@@ -16,12 +16,12 @@ pub enum NodeEvent {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct EventNetworkGraph {
     pub nodes: Vec<EventNetworkNode>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct EventNetworkNode {
     pub node_id: NodeId,
     pub node_type: NodeType,
