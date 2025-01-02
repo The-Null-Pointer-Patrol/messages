@@ -9,7 +9,11 @@ pub enum NodeEvent {
     StartingMessageTransmission(Message),
     MessageSentSuccessfully(Message),
     MessageReceived(Message),
-    KnownNetworkGraph(EventNetworkGraph)
+    KnownNetworkGraph(EventNetworkGraph),
+    UpdateDroppedPackets {
+        node: NodeId,
+        num_of_dropped_packets: u64,
+    }
 }
 
 #[derive(Debug)]
