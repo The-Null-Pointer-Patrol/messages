@@ -1,14 +1,19 @@
-use crate::{DroneSend, Message};
 use wg_2024::network::NodeId;
 use wg_2024::packet::{NodeType, Packet};
+use crate::Message;
 
-pub enum NodeEvent<M: DroneSend> {
+#[derive(Debug)]
+pub enum NodeEvent {
     PacketSent(Packet),
     PacketReceived(Packet),
-    StartingMessageTransmission(Message<M>),
-    MessageSentSuccessfully(Message<M>),
-    MessageReceived(Message<M>),
+    StartingMessageTransmission(Message),
+    MessageSentSuccessfully(Message),
+    MessageReceived(Message),
     KnownNetworkGraph(EventNetworkGraph),
+    UpdateDroppedPackets {
+        node: NodeId,
+        num_of_dropped_packets: u64,
+    }
 }
 
 #[derive(Debug)]
