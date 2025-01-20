@@ -3,7 +3,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::DeserializeOwned;
 use wg_2024::network::NodeId;
 
-mod node;
+pub mod node;
 pub mod node_event;
 
 pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
