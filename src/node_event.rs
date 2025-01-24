@@ -8,7 +8,8 @@ pub enum NodeEvent {
     StartingMessageTransmission(Message),
     MessageSentSuccessfully(Message),
     MessageReceived(Message),
-    KnownNetworkGraph(EventNetworkGraph),
+    // NodeId field is used to know the id of event sender
+    KnownNetworkGraph(NodeId, EventNetworkGraph),
     //UpdateDroppedPackets {
     //    node: NodeId,
     //    num_of_dropped_packets: u64,
@@ -16,10 +17,7 @@ pub enum NodeEvent {
 }
 
 #[derive(Debug, Clone)]
-/// representation of the network topology as discovered by client/server during flooding, `source`
-/// is the id of the client/server that created the topology
 pub struct EventNetworkGraph {
-    pub source: NodeId,
     pub nodes: Vec<EventNetworkNode>,
 }
 
