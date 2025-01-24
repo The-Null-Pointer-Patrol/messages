@@ -19,6 +19,21 @@ pub enum NodeEvent {
     //},
 }
 
+impl NodeEvent {
+    /// returns the `source` of the event, which is the node that sent the event.
+    /// Returns `None` only in the case of `PacketSent(packet)` when the packet is malformed,
+    /// which means that the previous_hop can't be calculated
+    pub fn source(&self) -> Option<NodeId> {
+        match self {
+            NodeEvent::PacketSent(packet) => packet.routing_header.previous_hop(),
+            NodeEvent::StartingMessageTransmission(message)
+            | NodeEvent::MessageSentSuccessfully(message)
+            | NodeEvent::MessageReceived(message) => Some(message.source_id),
+            NodeEvent::KnownNetworkGraph { source, graph: _ } => Some(*source),
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct EventNetworkGraph {
     pub nodes: Vec<EventNetworkNode>,
