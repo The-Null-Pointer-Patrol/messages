@@ -9,7 +9,10 @@ pub enum NodeEvent {
     MessageSentSuccessfully(Message),
     MessageReceived(Message),
     // NodeId field is used to know the id of event sender
-    KnownNetworkGraph(NodeId, EventNetworkGraph),
+    KnownNetworkGraph {
+        source: NodeId,
+        graph: EventNetworkGraph,
+    },
     //UpdateDroppedPackets {
     //    node: NodeId,
     //    num_of_dropped_packets: u64,
