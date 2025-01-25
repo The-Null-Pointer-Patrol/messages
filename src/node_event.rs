@@ -1,6 +1,6 @@
 use crate::Message;
 use wg_2024::network::NodeId;
-use wg_2024::packet::{NodeType, Packet};
+use wg_2024::packet::{NodeType, Packet, PacketType};
 
 #[derive(Debug, Clone)]
 pub enum NodeEvent {
@@ -25,7 +25,10 @@ impl NodeEvent {
     /// which means that the previous_hop can't be calculated
     pub fn source(&self) -> Option<NodeId> {
         match self {
-            NodeEvent::PacketSent(packet) => packet.routing_header.previous_hop(),
+            NodeEvent::PacketSent(packet) => match &packet.pack_type {
+                PacketType::FloodRequest(f) => f.path_trace.last().map(|x| x.0),
+                _ => packet.routing_header.previous_hop(),
+            },
             NodeEvent::StartingMessageTransmission(message)
             | NodeEvent::MessageSentSuccessfully(message)
             | NodeEvent::MessageReceived(message) => Some(message.source_id),
