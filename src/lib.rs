@@ -1,5 +1,5 @@
 use std::fmt::Debug;
-use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 use serde::de::DeserializeOwned;
 use wg_2024::network::NodeId;
 
@@ -23,7 +23,8 @@ pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Message {
-    pub source_id: NodeId,
+    pub source: NodeId,
+    pub destination: NodeId,
     pub session_id: u64,
     pub content: MessageType,
 }

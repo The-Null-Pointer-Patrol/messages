@@ -1,11 +1,11 @@
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashMap,
     fmt,
 };
 
-use crossbeam_channel::{unbounded, Receiver, Sender};
+use crossbeam_channel::{Receiver, Sender};
 use wg_2024::{
-    config::{Client, Config, Drone, Server},
+    config::{Client, Drone, Server},
     controller::{DroneCommand, DroneEvent},
     network::NodeId,
     packet::Packet,
