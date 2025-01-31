@@ -116,8 +116,8 @@ impl MessageUtilities for ChatResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ServerType {
-    TextServer,
-    MediaServer,
+    CommunicationServer,
+    ContentServer,
 }
 
 impl MessageUtilities for ServerType { }
