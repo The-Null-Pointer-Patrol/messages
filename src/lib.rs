@@ -34,6 +34,7 @@ impl MessageUtilities for Message { }
 pub enum MessageType {
     Request(RequestType),
     Response(ResponseType),
+    Error(ErrorType),
 }
 
 impl MessageUtilities for MessageType { }
@@ -121,3 +122,11 @@ pub enum ServerType {
 }
 
 impl MessageUtilities for ServerType { }
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ErrorType {
+    Unsupported(RequestType),
+    Unexpected(ResponseType),
+}
+
+impl MessageUtilities for ErrorType { }
