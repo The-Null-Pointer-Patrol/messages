@@ -92,7 +92,7 @@ impl MessageUtilities for ChatRequest { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TextResponse {
-    TextList(Vec<u64>),
+    TextList(Vec<String>),
     Text(String),
     NotFound,
 }
@@ -101,7 +101,7 @@ impl MessageUtilities for TextResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaResponse {
-    MediaList(Vec<u64>),
+    MediaList(Vec<String>),
     Media(Vec<u8>), // should we use some other type?
 }
 
