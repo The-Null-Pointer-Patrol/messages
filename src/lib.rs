@@ -128,6 +128,7 @@ impl MessageUtilities for ServerType { }
 pub enum ErrorType {
     Unsupported(RequestType),
     Unexpected(ResponseType),
+    Unregistered(NodeId),
 }
 
 impl MessageUtilities for ErrorType { }
