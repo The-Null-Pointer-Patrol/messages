@@ -110,7 +110,7 @@ impl MessageUtilities for MediaResponse { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatResponse {
     ClientList(Vec<NodeId>),
-    MessageFrom { from: NodeId, message: Vec<u8> },
+    MessageFrom { from: NodeId, message: String },
     MessageSent,
 }
 
