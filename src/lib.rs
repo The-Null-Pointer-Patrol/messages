@@ -102,7 +102,8 @@ impl MessageUtilities for TextResponse { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaResponse {
     MediaList(Vec<String>),
-    Media(Vec<u8>), // should we use some other type?
+    Media(Vec<u8>),
+    NotFound,
 }
 
 impl MessageUtilities for MediaResponse { }
