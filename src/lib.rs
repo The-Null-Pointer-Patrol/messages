@@ -94,7 +94,7 @@ impl MessageUtilities for ChatRequest { }
 pub enum TextResponse {
     TextList(Vec<String>),
     Text(String),
-    NotFound,
+    NotFound(String),
 }
 
 impl MessageUtilities for TextResponse { }
@@ -103,7 +103,7 @@ impl MessageUtilities for TextResponse { }
 pub enum MediaResponse {
     MediaList(Vec<String>),
     Media(Vec<u8>),
-    NotFound,
+    NotFound(String),
 }
 
 impl MessageUtilities for MediaResponse { }
