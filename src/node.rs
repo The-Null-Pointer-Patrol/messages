@@ -1,9 +1,9 @@
+use crate::node_event::NodeEvent;
+use crossbeam_channel::{unbounded, Receiver, Sender};
 use std::{
     collections::{HashMap, HashSet},
     fmt,
 };
-
-use crossbeam_channel::{unbounded, Receiver, Sender};
 use wg_2024::{
     config::{Client, Config, Drone, Server},
     controller::{DroneCommand, DroneEvent},
@@ -15,7 +15,8 @@ use wg_2024::{
 pub struct NodeOptions {
     pub kind: NodeKind,
     pub id: NodeId,
-    pub event_send: Sender<DroneEvent>,
+    pub droneevent_send: Option<Sender<DroneEvent>>,
+    pub nodeevent_send: Option<Sender<NodeEvent>>,
     pub command_recv: Receiver<DroneCommand>,
     pub packet_send: HashMap<NodeId, Sender<Packet>>,
     pub packet_recv: Receiver<Packet>,
