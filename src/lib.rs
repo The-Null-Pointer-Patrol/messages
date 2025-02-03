@@ -80,7 +80,7 @@ impl MessageUtilities for MediaRequest { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatRequest {
     ClientList,
-    Register(NodeId),
+    Register,
     SendMessage {
         from: NodeId,
         to: NodeId,
