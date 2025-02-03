@@ -2,7 +2,6 @@ use crate::node_event::NodeEvent;
 use crossbeam_channel::{unbounded, Receiver, Sender};
 use std::{collections::HashMap, fmt};
 
-use crossbeam_channel::{Receiver, Sender};
 use wg_2024::{
     config::{Client, Drone, Server},
     controller::{DroneCommand, DroneEvent},
