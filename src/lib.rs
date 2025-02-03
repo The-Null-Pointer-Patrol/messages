@@ -64,7 +64,7 @@ impl MessageUtilities for ResponseType { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TextRequest {
     TextList,
-    Text(u64),
+    Text(String),
 }
 
 impl MessageUtilities for TextRequest { }
@@ -72,7 +72,7 @@ impl MessageUtilities for TextRequest { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaRequest {
     MediaList,
-    Media(u64),
+    Media(String),
 }
 
 impl MessageUtilities for MediaRequest { }
@@ -80,7 +80,7 @@ impl MessageUtilities for MediaRequest { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatRequest {
     ClientList,
-    Register(NodeId),
+    Register,
     SendMessage {
         from: NodeId,
         to: NodeId,
@@ -92,17 +92,18 @@ impl MessageUtilities for ChatRequest { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TextResponse {
-    TextList(Vec<u64>),
+    TextList(Vec<String>),
     Text(String),
-    NotFound,
+    NotFound(String),
 }
 
 impl MessageUtilities for TextResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaResponse {
-    MediaList(Vec<u64>),
-    Media(Vec<u8>), // should we use some other type?
+    MediaList(Vec<String>),
+    Media(Vec<u8>),
+    NotFound(String),
 }
 
 impl MessageUtilities for MediaResponse { }
@@ -128,6 +129,7 @@ impl MessageUtilities for ServerType { }
 pub enum ErrorType {
     Unsupported(RequestType),
     Unexpected(ResponseType),
+    Unregistered(NodeId),
 }
 
 impl MessageUtilities for ErrorType { }
