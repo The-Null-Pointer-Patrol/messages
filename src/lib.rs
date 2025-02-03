@@ -64,7 +64,7 @@ impl MessageUtilities for ResponseType { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TextRequest {
     TextList,
-    Text(u64),
+    Text(String),
 }
 
 impl MessageUtilities for TextRequest { }
@@ -72,7 +72,7 @@ impl MessageUtilities for TextRequest { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MediaRequest {
     MediaList,
-    Media(u64),
+    Media(String),
 }
 
 impl MessageUtilities for MediaRequest { }
