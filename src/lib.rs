@@ -1,5 +1,5 @@
 use std::fmt::Debug;
-use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 use serde::de::DeserializeOwned;
 use wg_2024::network::NodeId;
 
@@ -23,7 +23,8 @@ pub trait MessageUtilities: Serialize + DeserializeOwned + Send {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Message {
-    pub source_id: NodeId,
+    pub source: NodeId,
+    pub destination: NodeId,
     pub session_id: u64,
     pub content: MessageType,
 }
@@ -34,6 +35,7 @@ impl MessageUtilities for Message { }
 pub enum MessageType {
     Request(RequestType),
     Response(ResponseType),
+    Error(ErrorType),
 }
 
 impl MessageUtilities for MessageType { }
@@ -108,7 +110,7 @@ impl MessageUtilities for MediaResponse { }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ChatResponse {
     ClientList(Vec<NodeId>),
-    MessageFrom { from: NodeId, message: Vec<u8> },
+    MessageFrom { from: NodeId, message: String },
     MessageSent,
 }
 
@@ -116,8 +118,16 @@ impl MessageUtilities for ChatResponse { }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ServerType {
-    TextServer,
-    MediaServer,
+    CommunicationServer,
+    ContentServer,
 }
 
 impl MessageUtilities for ServerType { }
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ErrorType {
+    Unsupported(RequestType),
+    Unexpected(ResponseType),
+}
+
+impl MessageUtilities for ErrorType { }
