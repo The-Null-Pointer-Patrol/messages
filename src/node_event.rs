@@ -28,7 +28,13 @@ impl NodeEvent {
         match self {
             NodeEvent::PacketSent(packet) => match &packet.pack_type {
                 PacketType::FloodRequest(f) => f.path_trace.last().map(|x| x.0),
-                _ => packet.routing_header.previous_hop(),
+                _ => {
+                    if packet.routing_header.hop_index > 0 {
+                        packet.routing_header.previous_hop()
+                    } else {
+                        None
+                    }
+                }
             },
             NodeEvent::StartingMessageTransmission(message)
             | NodeEvent::MessageSentSuccessfully(message)
