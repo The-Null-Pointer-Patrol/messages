@@ -37,6 +37,7 @@ impl fmt::Display for NodeKind {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct Node {
     pub kind: NodeKind,
     pub id: NodeId,
